@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -788,6 +789,10 @@ button {
 
     const STORAGE_KEY = "tracker_v1";
 
+    // COLLEGAMENTO SERVER
+    const API_URL = "https://server-app.sai9on.workers.dev/api/data";
+    const APP_ID = "vendite";
+
     let data = {
         loads: [],
         creditorPayments: {}
@@ -817,14 +822,60 @@ button {
     }
 
 
-    function loadData() {
+    async function loadData() {
 
+        let serverLoaded = false;
+
+        // PRIMA PROVA A RECUPERARE I DATI DAL SERVER
+        try {
+
+            const response = await fetch(
+                API_URL + "?app=" + APP_ID
+            );
+
+            if (!response.ok) {
+                throw new Error("Errore recupero server: " + response.status);
+            }
+
+            const result = await response.json();
+
+            if (
+                result &&
+                result.data &&
+                typeof result.data === "object"
+            ) {
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(result.data)
+                );
+
+                serverLoaded = true;
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Errore collegamento server, utilizzo dati locali:",
+                error
+            );
+        }
+
+
+        // CARICAMENTO DEI DATI LOCALI O DI QUELLI RECUPERATI DAL SERVER
         try {
 
             const saved =
                 localStorage.getItem(STORAGE_KEY);
 
-            if (!saved) return;
+            if (!saved) {
+
+                if (!serverLoaded) {
+                    saveData();
+                }
+
+                return;
+            }
 
             const parsed =
                 JSON.parse(saved);
@@ -979,11 +1030,18 @@ button {
 
             console.error("Errore caricamento dati:", error);
         }
+
+        // SE IL SERVER NON AVEVA DATI, INVIA I DATI LOCALI
+        // PER INIZIALIZZARE L'ARCHIVIO ONLINE.
+        if (!serverLoaded) {
+            saveData();
+        }
     }
 
 
     function saveData() {
 
+        // SALVATAGGIO LOCALE
         try {
 
             localStorage.setItem(
@@ -993,8 +1051,41 @@ button {
 
         } catch (error) {
 
-            console.error("Errore salvataggio dati:", error);
+            console.error("Errore salvataggio locale:", error);
         }
+
+        // SALVATAGGIO SUL SERVER
+        fetch(API_URL, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                app_id: APP_ID,
+                data: data
+            })
+
+        }).then(response => {
+
+            if (!response.ok) {
+                throw new Error("Errore salvataggio server: " + response.status);
+            }
+
+            return response.json();
+
+        }).then(result => {
+
+            if (!result || result.status !== "ok") {
+                throw new Error("Salvataggio server non confermato.");
+            }
+
+        }).catch(error => {
+
+            console.error("Errore sincronizzazione server:", error);
+        });
     }
 
 
@@ -2613,9 +2704,13 @@ button {
     );
 
 
-    loadData();
-    update();
-    updateSaleAmounts();
+    // ATTENDE IL RECUPERO DEI DATI PRIMA DI AVVIARE L'APP
+    loadData().then(() => {
+
+        update();
+        updateSaleAmounts();
+
+    });
 
 })();
 </script>
