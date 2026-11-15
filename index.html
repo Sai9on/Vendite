@@ -476,17 +476,9 @@ button {
     <!-- SITUAZIONE ATTUALE -->
     <div class="card">
 
-        <div
-            class="dashboard-header clickable"
-            id="dashboardToggle"
-        >
-            <div class="card-title">
-                Situazione attuale
-            </div>
-
-            <div class="chevron" id="dashboardChevron">
-                ▼
-            </div>
+        <div class="dashboard-header clickable" id="dashboardToggle">
+            <div class="card-title">Situazione attuale</div>
+            <div class="chevron" id="dashboardChevron">▼</div>
         </div>
 
         <div id="dashboardContent">
@@ -531,7 +523,6 @@ button {
             </div>
 
             <div class="progress-container">
-
                 <div class="progress-bar">
                     <div class="progress" id="progress"></div>
                 </div>
@@ -540,90 +531,48 @@ button {
                     <span>Venduto</span>
                     <span id="progressText">0%</span>
                 </div>
-
             </div>
 
             <div class="load-details hidden" id="loadDetails"></div>
 
         </div>
-
     </div>
 
 
     <!-- REGISTRA VENDITA -->
     <div class="card">
 
-        <div class="card-title">
-            Registra vendita
-        </div>
+        <div class="card-title">Registra vendita</div>
 
         <label for="saleLoad">Carico</label>
-
         <select id="saleLoad">
             <option value="">Seleziona carico</option>
         </select>
 
         <label for="buyerName">Nome acquirente</label>
-
-        <input
-            id="buyerName"
-            type="text"
-            placeholder="Es. Mario Rossi"
-            maxlength="80"
-        >
+        <input id="buyerName" type="text" placeholder="Es. Mario Rossi" maxlength="80">
 
         <label for="saleQty">Quantità venduta</label>
-
-        <input
-            id="saleQty"
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            placeholder="Es. 50"
-        >
+        <input id="saleQty" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Es. 50">
 
         <label for="salePrice">Prezzo totale</label>
+        <input id="salePrice" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Es. 100">
 
-        <input
-            id="salePrice"
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            placeholder="Es. 100"
-        >
+        <label for="saleDate">Data vendita</label>
+        <input id="saleDate" type="date">
 
         <label for="saleReceived">Ricevuto</label>
-
-        <input
-            id="saleReceived"
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            placeholder="Es. 60"
-        >
+        <input id="saleReceived" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Es. 60">
 
         <label for="saleOwed">Da ricevere</label>
-
-        <input
-            id="saleOwed"
-            type="number"
-            readonly
-            value="0"
-        >
+        <input id="saleOwed" type="number" readonly value="0">
 
         <div class="paid-row">
             <input type="checkbox" id="salePaid">
-            <label for="salePaid" style="margin:0">
-                Già pagata
-            </label>
+            <label for="salePaid" style="margin:0">Già pagata</label>
         </div>
 
-        <button class="primary" id="addSale">
-            Aggiungi vendita
-        </button>
+        <button class="primary" id="addSale">Aggiungi vendita</button>
 
         <div class="message" id="saleMessage"></div>
 
@@ -633,44 +582,21 @@ button {
     <!-- CARICO INIZIALE -->
     <div class="card">
 
-        <div class="card-title">
-            Carico iniziale
-        </div>
+        <div class="card-title">Carico iniziale</div>
 
         <label for="initialName">Nome</label>
-
-        <input
-            id="initialName"
-            type="text"
-            placeholder="Es. Primo carico"
-            maxlength="50"
-        >
+        <input id="initialName" type="text" placeholder="Es. Primo carico" maxlength="50">
 
         <label for="initialQty">Quantità totale</label>
-
-        <input
-            id="initialQty"
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            placeholder="Es. 1000"
-        >
+        <input id="initialQty" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Es. 1000">
 
         <label for="initialPrice">Costo totale</label>
+        <input id="initialPrice" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Es. 500">
 
-        <input
-            id="initialPrice"
-            type="number"
-            inputmode="decimal"
-            min="0"
-            step="0.01"
-            placeholder="Es. 500"
-        >
+        <label for="initialDate">Data carico</label>
+        <input id="initialDate" type="date">
 
-        <button class="primary" id="saveInitial">
-            Salva carico iniziale
-        </button>
+        <button class="primary" id="saveInitial">Salva carico iniziale</button>
 
         <div class="message" id="initialMessage"></div>
 
@@ -680,14 +606,10 @@ button {
     <!-- STORICO -->
     <div class="card">
 
-        <div class="card-title">
-            Storico vendite
-        </div>
+        <div class="card-title">Storico vendite</div>
 
         <div id="salesList">
-            <div class="empty">
-                Nessun movimento registrato
-            </div>
+            <div class="empty">Nessun movimento registrato</div>
         </div>
 
         <div id="historyTotal"></div>
@@ -698,9 +620,7 @@ button {
     <!-- LISTA CLIENTI -->
     <div class="card">
 
-        <div class="card-title">
-            Lista clienti
-        </div>
+        <div class="card-title">Lista clienti</div>
 
         <div id="clientsList">
             <div class="empty">Nessun cliente presente</div>
@@ -712,9 +632,7 @@ button {
     <!-- LISTA CREDITORI -->
     <div class="card">
 
-        <div class="card-title">
-            Lista creditori
-        </div>
+        <div class="card-title">Lista creditori</div>
 
         <div id="creditorsList">
             <div class="empty">Nessun credito da riscuotere</div>
@@ -726,60 +644,35 @@ button {
     <!-- RISULTATO -->
     <div class="card">
 
-        <div class="card-title">
-            Risultato
-        </div>
+        <div class="card-title">Risultato</div>
 
         <div class="grid">
 
             <div class="stat">
-                <div class="stat-label">
-                    Costo per me
-                </div>
-
-                <div class="stat-value" id="soldCost">
-                    €0,00
-                </div>
+                <div class="stat-label">Costo per me</div>
+                <div class="stat-value" id="soldCost">€0,00</div>
             </div>
 
             <div class="stat">
-                <div class="stat-label">
-                    Incasso lordo
-                </div>
-
-                <div class="stat-value" id="profit">
-                    €0,00
-                </div>
+                <div class="stat-label">Incasso lordo</div>
+                <div class="stat-value" id="profit">€0,00</div>
             </div>
 
             <div class="stat">
-                <div class="stat-label">
-                    Margine
-                </div>
-
-                <div class="stat-value" id="margin">
-                    0%
-                </div>
+                <div class="stat-label">Margine</div>
+                <div class="stat-value" id="margin">0%</div>
             </div>
 
             <div class="stat">
-                <div class="stat-label">
-                    Ricavo netto
-                </div>
-
-                <div class="stat-value" id="netRevenue">
-                    €0,00
-                </div>
+                <div class="stat-label">Guadagno netto</div>
+                <div class="stat-value" id="netRevenue">€0,00</div>
             </div>
 
         </div>
-
     </div>
 
 
-    <button class="danger" id="reset">
-        Cancella tutti i dati
-    </button>
+    <button class="danger" id="reset">Cancella tutti i dati</button>
 
 </div>
 
@@ -800,12 +693,10 @@ button {
 
     let editingLoadId = null;
 
-    const $ = id =>
-        document.getElementById(id);
+    const $ = id => document.getElementById(id);
 
 
     function generateId() {
-
         return (
             Date.now().toString(36) +
             Math.random().toString(36).substring(2, 9)
@@ -814,7 +705,6 @@ button {
 
 
     function normalizeName(name) {
-
         return String(name || "")
             .trim()
             .replace(/\s+/g, " ")
@@ -822,16 +712,48 @@ button {
     }
 
 
+    function dateInputValue(date) {
+        if (!date) return "";
+
+        const d = new Date(date);
+
+        if (Number.isNaN(d.getTime())) return "";
+
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+
+        return `${year}-${month}-${day}`;
+    }
+
+
+    function dateFromInput(value) {
+        if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+            return null;
+        }
+
+        const [year, month, day] = value.split("-").map(Number);
+        const date = new Date(year, month - 1, day, 12, 0, 0);
+
+        if (
+            date.getFullYear() !== year ||
+            date.getMonth() !== month - 1 ||
+            date.getDate() !== day
+        ) {
+            return null;
+        }
+
+        return date.toISOString();
+    }
+
+
     async function loadData() {
 
         let serverLoaded = false;
 
-        // PRIMA PROVA A RECUPERARE I DATI DAL SERVER
         try {
 
-            const response = await fetch(
-                API_URL + "?app=" + APP_ID
-            );
+            const response = await fetch(API_URL + "?app=" + APP_ID);
 
             if (!response.ok) {
                 throw new Error("Errore recupero server: " + response.status);
@@ -839,60 +761,39 @@ button {
 
             const result = await response.json();
 
-            if (
-                result &&
-                result.data &&
-                typeof result.data === "object"
-            ) {
+            if (result && result.data && typeof result.data === "object") {
 
-                localStorage.setItem(
-                    STORAGE_KEY,
-                    JSON.stringify(result.data)
-                );
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(result.data));
 
                 serverLoaded = true;
             }
 
         } catch (error) {
 
-            console.error(
-                "Errore collegamento server, utilizzo dati locali:",
-                error
-            );
+            console.error("Errore collegamento server, utilizzo dati locali:", error);
         }
 
 
-        // CARICAMENTO DEI DATI LOCALI O DI QUELLI RECUPERATI DAL SERVER
         try {
 
-            const saved =
-                localStorage.getItem(STORAGE_KEY);
+            const saved = localStorage.getItem(STORAGE_KEY);
 
             if (!saved) {
 
-                if (!serverLoaded) {
-                    saveData();
-                }
+                if (!serverLoaded) saveData();
 
                 return;
             }
 
-            const parsed =
-                JSON.parse(saved);
+            const parsed = JSON.parse(saved);
 
-            if (
-                parsed &&
-                typeof parsed === "object"
-            ) {
+            if (parsed && typeof parsed === "object") {
 
                 if (Array.isArray(parsed.loads)) {
 
                     data = parsed;
 
-                    if (
-                        !data.creditorPayments ||
-                        typeof data.creditorPayments !== "object"
-                    ) {
+                    if (!data.creditorPayments || typeof data.creditorPayments !== "object") {
                         data.creditorPayments = {};
                     }
 
@@ -921,18 +822,13 @@ button {
                             }
 
                             if (!Number.isFinite(Number(sale.received))) {
-                                sale.received = sale.paid
-                                    ? number(sale.price)
-                                    : 0;
+                                sale.received = sale.paid ? number(sale.price) : 0;
                             }
 
                             if (!Number.isFinite(Number(sale.owed))) {
                                 sale.owed = sale.paid
                                     ? 0
-                                    : Math.max(
-                                        0,
-                                        number(sale.price) - number(sale.received)
-                                    );
+                                    : Math.max(0, number(sale.price) - number(sale.received));
                             }
 
                             if (sale.paid) {
@@ -949,43 +845,26 @@ button {
                 }
 
 
-                if (
-                    "initialQuantity" in parsed ||
-                    "initialCost" in parsed
-                ) {
+                if ("initialQuantity" in parsed || "initialCost" in parsed) {
 
-                    const oldQuantity =
-                        number(parsed.initialQuantity);
+                    const oldQuantity = number(parsed.initialQuantity);
+                    const oldCost = number(parsed.initialCost);
 
-                    const oldCost =
-                        number(parsed.initialCost);
-
-                    const oldSales =
-                        Array.isArray(parsed.sales)
-                            ? parsed.sales
-                            : [];
+                    const oldSales = Array.isArray(parsed.sales) ? parsed.sales : [];
 
                     data = {
                         loads: [],
                         creditorPayments: {}
                     };
 
-                    if (
-                        oldQuantity > 0 ||
-                        oldCost > 0 ||
-                        oldSales.length > 0
-                    ) {
+                    if (oldQuantity > 0 || oldCost > 0 || oldSales.length > 0) {
 
                         data.loads.push({
 
                             id: generateId(),
-
                             name: "Carico iniziale",
-
                             initialQuantity: oldQuantity,
-
                             initialCost: oldCost,
-
                             date: new Date().toISOString(),
 
                             sales: oldSales.map(sale => {
@@ -994,26 +873,14 @@ button {
                                 const paid = Boolean(sale.paid);
 
                                 return {
-
                                     id: sale.id || generateId(),
-
-                                    buyerName:
-                                        typeof sale.buyerName === "string"
-                                            ? sale.buyerName
-                                            : "",
-
+                                    buyerName: typeof sale.buyerName === "string" ? sale.buyerName : "",
                                     quantity: number(sale.quantity),
-
                                     price: price,
-
                                     received: paid ? price : 0,
-
                                     owed: paid ? 0 : price,
-
                                     date: sale.date || new Date().toISOString(),
-
                                     paid: paid
-
                                 };
 
                             })
@@ -1031,8 +898,6 @@ button {
             console.error("Errore caricamento dati:", error);
         }
 
-        // SE IL SERVER NON AVEVA DATI, INVIA I DATI LOCALI
-        // PER INIZIALIZZARE L'ARCHIVIO ONLINE.
         if (!serverLoaded) {
             saveData();
         }
@@ -1041,20 +906,15 @@ button {
 
     function saveData() {
 
-        // SALVATAGGIO LOCALE
         try {
 
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(data)
-            );
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
         } catch (error) {
 
             console.error("Errore salvataggio locale:", error);
         }
 
-        // SALVATAGGIO SUL SERVER
         fetch(API_URL, {
 
             method: "POST",
@@ -1090,44 +950,29 @@ button {
 
 
     function number(value) {
-
         const n = parseFloat(value);
-
-        return Number.isFinite(n)
-            ? n
-            : 0;
+        return Number.isFinite(n) ? n : 0;
     }
 
 
     function money(value) {
-
-        return new Intl.NumberFormat(
-            "it-IT",
-            {
-                style: "currency",
-                currency: "EUR"
-            }
-        ).format(
-            Number.isFinite(value) ? value : 0
-        );
+        return new Intl.NumberFormat("it-IT", {
+            style: "currency",
+            currency: "EUR"
+        }).format(Number.isFinite(value) ? value : 0);
     }
 
 
     function grams(value) {
-
         const n = Number.isFinite(value) ? value : 0;
 
-        return new Intl.NumberFormat(
-            "it-IT",
-            {
-                maximumFractionDigits: 2
-            }
-        ).format(n) + " g";
+        return new Intl.NumberFormat("it-IT", {
+            maximumFractionDigits: 2
+        }).format(n) + " g";
     }
 
 
     function percentage(value) {
-
         return value.toFixed(1).replace(".", ",") + "%";
     }
 
@@ -1138,48 +983,32 @@ button {
 
         const d = new Date(date);
 
-        if (Number.isNaN(d.getTime())) {
-            return "";
-        }
+        if (Number.isNaN(d.getTime())) return "";
 
-        return d.toLocaleDateString(
-            "it-IT",
-            {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-            }
-        );
+        return d.toLocaleDateString("it-IT", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        });
     }
 
 
     function getLoadStats(load) {
 
-        const initialQuantity =
-            number(load.initialQuantity);
+        const initialQuantity = number(load.initialQuantity);
+        const initialCost = number(load.initialCost);
 
-        const initialCost =
-            number(load.initialCost);
-
-        const sales =
-            Array.isArray(load.sales)
-                ? load.sales
-                : [];
+        const sales = Array.isArray(load.sales) ? load.sales : [];
 
         let soldQuantity = 0;
         let revenue = 0;
 
         sales.forEach(sale => {
-
             soldQuantity += number(sale.quantity);
             revenue += number(sale.price);
-
         });
 
-        const remaining = Math.max(
-            0,
-            initialQuantity - soldQuantity
-        );
+        const remaining = Math.max(0, initialQuantity - soldQuantity);
 
         const costPerGram = initialQuantity > 0
             ? initialCost / initialQuantity
@@ -1190,7 +1019,6 @@ button {
             : 0;
 
         const soldCost = soldQuantity * costPerGram;
-
         const profit = revenue - soldCost;
 
         const margin = revenue > 0
@@ -1277,7 +1105,11 @@ button {
 
             load.sales.forEach(sale => {
 
-                total += number(sale.owed);
+                total += Math.max(
+                    0,
+                    number(sale.owed) -
+                    number(data.creditorPayments[sale.id])
+                );
 
             });
 
@@ -1291,53 +1123,25 @@ button {
 
         const stats = getAggregateStats();
 
-        $("initialQuantity").textContent =
-            grams(stats.initialQuantity);
+        $("initialQuantity").textContent = grams(stats.initialQuantity);
+        $("soldQuantity").textContent = grams(stats.soldQuantity);
+        $("remaining").textContent = grams(stats.remaining);
+        $("initialCost").textContent = money(stats.initialCost);
+        $("revenue").textContent = money(stats.revenue);
+        $("costPerGram").textContent = money(stats.costPerGram);
+        $("salePerGram").textContent = money(stats.averageSalePrice);
+        $("soldCost").textContent = money(stats.soldCost);
 
-        $("soldQuantity").textContent =
-            grams(stats.soldQuantity);
-
-        $("remaining").textContent =
-            grams(stats.remaining);
-
-        $("initialCost").textContent =
-            money(stats.initialCost);
-
-        $("revenue").textContent =
-            money(stats.revenue);
-
-        $("costPerGram").textContent =
-            money(stats.costPerGram);
-
-        $("salePerGram").textContent =
-            money(stats.averageSalePrice);
-
-        $("soldCost").textContent =
-            money(stats.soldCost);
-
-        $("profit").textContent =
-            money(stats.revenue);
-
-        $("margin").textContent =
-            percentage(stats.margin);
-
-        $("netRevenue").textContent =
-            money(stats.profit);
+        $("profit").textContent = money(stats.revenue);
+        $("margin").textContent = percentage(stats.margin);
+        $("netRevenue").textContent = money(stats.profit);
 
         const progress = stats.initialQuantity > 0
-            ? Math.min(
-                100,
-                Math.max(
-                    0,
-                    (stats.soldQuantity / stats.initialQuantity) * 100
-                )
-            )
+            ? Math.min(100, Math.max(0, (stats.soldQuantity / stats.initialQuantity) * 100))
             : 0;
 
         $("progress").style.width = progress + "%";
-
-        $("progressText").textContent =
-            percentage(progress);
+        $("progressText").textContent = percentage(progress);
 
         renderLoadSelector();
         renderLoadDetails();
@@ -1350,22 +1154,17 @@ button {
     function renderLoadSelector() {
 
         const select = $("saleLoad");
-
         const currentValue = select.value;
 
-        select.innerHTML =
-            '<option value="">Seleziona carico</option>';
+        select.innerHTML = '<option value="">Seleziona carico</option>';
 
         data.loads.forEach(load => {
 
             const stats = getLoadStats(load);
-
             const option = document.createElement("option");
 
             option.value = load.id;
-
-            option.textContent =
-                load.name + " — " + grams(stats.remaining);
+            option.textContent = load.name + " — " + grams(stats.remaining);
 
             select.appendChild(option);
         });
@@ -1383,17 +1182,13 @@ button {
         container.innerHTML = "";
 
         if (!data.loads.length) {
-
-            container.innerHTML =
-                '<div class="empty">Nessun carico presente</div>';
-
+            container.innerHTML = '<div class="empty">Nessun carico presente</div>';
             return;
         }
 
         data.loads.forEach(load => {
 
             const stats = getLoadStats(load);
-
             const card = document.createElement("div");
 
             card.className = "load-card";
@@ -1404,13 +1199,9 @@ button {
 
                 <div class="load-heading">
 
-                    <div class="load-name">
-                        ${escapeHtml(load.name)}
-                    </div>
+                    <div class="load-name">${escapeHtml(load.name)}</div>
 
-                    <div class="load-date">
-                        ${formatDate(load.date)}
-                    </div>
+                    <div class="load-date">${formatDate(load.date)}</div>
 
                 </div>
 
@@ -1482,51 +1273,26 @@ button {
                         </div>
 
                         <label>Nome</label>
-                        <input
-                            type="text"
-                            data-load-field="name"
-                            value="${escapeHtml(load.name)}"
-                        >
+                        <input type="text" data-load-field="name" value="${escapeHtml(load.name)}">
 
                         <label>Quantità totale</label>
-                        <input
-                            type="number"
-                            min="0"
-                            step="0.01"
-                            data-load-field="quantity"
-                            value="${load.initialQuantity}"
-                        >
+                        <input type="number" min="0" step="0.01" data-load-field="quantity" value="${load.initialQuantity}">
 
                         <label>Costo totale</label>
-                        <input
-                            type="number"
-                            min="0"
-                            step="0.01"
-                            data-load-field="cost"
-                            value="${load.initialCost}"
-                        >
+                        <input type="number" min="0" step="0.01" data-load-field="cost" value="${load.initialCost}">
 
-                        <button
-                            class="primary"
-                            type="button"
-                            data-save-load="${load.id}"
-                        >Salva modifiche</button>
+                        <label>Data carico</label>
+                        <input type="date" data-load-field="date" value="${dateInputValue(load.date)}">
 
-                        <button
-                            class="secondary"
-                            type="button"
-                            data-cancel-load="${load.id}"
-                        >Annulla</button>
+                        <button class="primary" type="button" data-save-load="${load.id}">Salva modifiche</button>
+
+                        <button class="secondary" type="button" data-cancel-load="${load.id}">Annulla</button>
 
                     </div>
 
                 ` : `
 
-                    <button
-                        class="edit-button"
-                        type="button"
-                        data-edit-load="${load.id}"
-                    >Modifica</button>
+                    <button class="edit-button" type="button" data-edit-load="${load.id}">Modifica</button>
 
                 `}
 
@@ -1555,58 +1321,40 @@ button {
         data.loads.forEach(load => {
 
             history.push({
-
                 type: "initial",
-
                 id: load.id,
-
                 name: load.name,
-
                 quantity: number(load.initialQuantity),
-
                 price: number(load.initialCost),
-
                 date: load.date,
-
                 load: load
-
             });
 
-            const sales = Array.isArray(load.sales)
-                ? load.sales
-                : [];
+            const sales = Array.isArray(load.sales) ? load.sales : [];
 
             sales.forEach(sale => {
+
+                const payments = number(data.creditorPayments[sale.id]);
 
                 history.push({
 
                     type: "sale",
-
                     id: sale.id,
-
                     loadId: load.id,
-
                     name: load.name,
 
-                    buyerName:
-                        typeof sale.buyerName === "string"
-                            ? sale.buyerName
-                            : "",
+                    buyerName: typeof sale.buyerName === "string" ? sale.buyerName : "",
 
                     quantity: number(sale.quantity),
-
                     price: number(sale.price),
 
-                    owed: number(sale.owed),
-
-                    received: number(sale.received),
+                    owed: Math.max(0, number(sale.owed) - payments),
+                    received: number(sale.received) + payments,
 
                     date: sale.date,
-
-                    paid: Boolean(sale.paid),
+                    paid: Boolean(sale.paid) || number(sale.owed) - payments <= 0,
 
                     sale: sale,
-
                     load: load
 
                 });
@@ -1616,10 +1364,8 @@ button {
         });
 
         return history.sort((a, b) => {
-
             const dateA = new Date(a.date).getTime();
             const dateB = new Date(b.date).getTime();
-
             return dateB - dateA;
         });
     }
@@ -1635,8 +1381,7 @@ button {
 
         if (!history.length) {
 
-            container.innerHTML =
-                '<div class="empty">Nessun movimento registrato</div>';
+            container.innerHTML = '<div class="empty">Nessun movimento registrato</div>';
 
             $("historyTotal").innerHTML = "";
 
@@ -1651,39 +1396,27 @@ button {
 
             if (item.type === "initial") {
 
-                const costPerGram = item.quantity > 0
-                    ? item.price / item.quantity
-                    : 0;
+                const costPerGram = item.quantity > 0 ? item.price / item.quantity : 0;
 
                 row.innerHTML = `
 
                     <div class="history-top">
 
-                        <div class="history-name">
-                            ${escapeHtml(item.name)}
-                        </div>
+                        <div class="history-name">${escapeHtml(item.name)}</div>
 
-                        <div class="history-amount history-negative">
-                            −${money(item.price)}
-                        </div>
+                        <div class="history-amount history-negative">−${money(item.price)}</div>
 
                     </div>
 
                     <div class="history-info">
-                        Carico iniziale ·
-                        ${grams(item.quantity)} ·
-                        ${money(costPerGram)} / g
+                        Carico iniziale · ${grams(item.quantity)} · ${money(costPerGram)} / g
                     </div>
 
-                    <div class="history-date">
-                        ${formatDate(item.date)}
-                    </div>
+                    <div class="history-date">${formatDate(item.date)}</div>
 
                     <div class="detail-popup hidden">
 
-                        <div class="detail-popup-title">
-                            Dati iniziali
-                        </div>
+                        <div class="detail-popup-title">Dati iniziali</div>
 
                         <div class="load-grid">
 
@@ -1714,9 +1447,7 @@ button {
 
             } else {
 
-                const pricePerGram = item.quantity > 0
-                    ? item.price / item.quantity
-                    : 0;
+                const pricePerGram = item.quantity > 0 ? item.price / item.quantity : 0;
 
                 const buyerText = item.buyerName
                     ? escapeHtml(item.buyerName)
@@ -1726,20 +1457,14 @@ button {
 
                     <div class="history-top">
 
-                        <div class="history-name">
-                            ${buyerText}
-                        </div>
+                        <div class="history-name">${buyerText}</div>
 
-                        <div class="history-amount history-positive">
-                            +${money(item.price)}
-                        </div>
+                        <div class="history-amount history-positive">+${money(item.price)}</div>
 
                     </div>
 
                     <div class="history-info">
-                        ${escapeHtml(item.name)} ·
-                        ${grams(item.quantity)} ·
-                        ${money(pricePerGram)} / g
+                        ${escapeHtml(item.name)} · ${grams(item.quantity)} · ${money(pricePerGram)} / g
                     </div>
 
                     ${item.owed > 0 ? `
@@ -1748,15 +1473,11 @@ button {
                         </div>
                     ` : ""}
 
-                    <div class="history-date">
-                        ${formatDate(item.date)}
-                    </div>
+                    <div class="history-date">${formatDate(item.date)}</div>
 
                     <div class="detail-popup hidden">
 
-                        <div class="detail-popup-title">
-                            Dettagli vendita
-                        </div>
+                        <div class="detail-popup-title">Dettagli vendita</div>
 
                         <div class="load-grid">
 
@@ -1797,9 +1518,7 @@ button {
 
                             <div class="load-stat">
                                 <div class="load-stat-label">Pagamento</div>
-                                <div class="load-stat-value">
-                                    ${item.owed === 0 ? "Pagata" : "Da ricevere"}
-                                </div>
+                                <div class="load-stat-value">${item.owed === 0 ? "Pagata" : "Da ricevere"}</div>
                             </div>
 
                             <div class="load-stat">
@@ -1862,7 +1581,6 @@ button {
                 const key = normalizeName(name);
 
                 if (!clients[key]) {
-
                     clients[key] = {
                         name: name,
                         quantity: 0,
@@ -1879,8 +1597,7 @@ button {
 
         });
 
-        return Object.values(clients)
-            .sort((a, b) => a.name.localeCompare(b.name, "it"));
+        return Object.values(clients).sort((a, b) => a.name.localeCompare(b.name, "it"));
     }
 
 
@@ -1893,19 +1610,13 @@ button {
         const clients = getClientData();
 
         if (!clients.length) {
-
-            container.innerHTML =
-                '<div class="empty">Nessun cliente presente</div>';
-
+            container.innerHTML = '<div class="empty">Nessun cliente presente</div>';
             return;
         }
 
         clients.forEach(client => {
 
-            const average = client.quantity > 0
-                ? client.revenue / client.quantity
-                : 0;
-
+            const average = client.quantity > 0 ? client.revenue / client.quantity : 0;
             const net = client.revenue - client.cost;
 
             const card = document.createElement("div");
@@ -1914,46 +1625,28 @@ button {
 
             card.innerHTML = `
 
-                <div class="client-name">
-                    ${escapeHtml(client.name)}
-                </div>
+                <div class="client-name">${escapeHtml(client.name)}</div>
 
                 <div class="load-grid">
 
                     <div class="load-stat">
-                        <div class="load-stat-label">
-                            Quantità venduta
-                        </div>
-                        <div class="load-stat-value">
-                            ${grams(client.quantity)}
-                        </div>
+                        <div class="load-stat-label">Quantità venduta</div>
+                        <div class="load-stat-value">${grams(client.quantity)}</div>
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">
-                            Prezzo medio / grammo
-                        </div>
-                        <div class="load-stat-value">
-                            ${money(average)}
-                        </div>
+                        <div class="load-stat-label">Prezzo medio / grammo</div>
+                        <div class="load-stat-value">${money(average)}</div>
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">
-                            Totale incassato
-                        </div>
-                        <div class="load-stat-value">
-                            ${money(client.revenue)}
-                        </div>
+                        <div class="load-stat-label">Totale incassato</div>
+                        <div class="load-stat-value">${money(client.revenue)}</div>
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">
-                            Netto incassato
-                        </div>
-                        <div class="load-stat-value">
-                            ${money(net)}
-                        </div>
+                        <div class="load-stat-label">Netto incassato</div>
+                        <div class="load-stat-value">${money(net)}</div>
                     </div>
 
                 </div>
@@ -1974,8 +1667,7 @@ button {
 
                 const owed = Math.max(
                     0,
-                    number(sale.owed) -
-                    number(data.creditorPayments[sale.id])
+                    number(sale.owed) - number(data.creditorPayments[sale.id])
                 );
 
                 if (owed <= 0) return;
@@ -1987,7 +1679,6 @@ button {
                 const key = normalizeName(name);
 
                 if (!creditors[key]) {
-
                     creditors[key] = {
                         name: name,
                         debt: 0,
@@ -1996,15 +1687,13 @@ button {
                 }
 
                 creditors[key].debt += owed;
-
                 creditors[key].sales.push(sale);
 
             });
 
         });
 
-        return Object.values(creditors)
-            .sort((a, b) => a.name.localeCompare(b.name, "it"));
+        return Object.values(creditors).sort((a, b) => a.name.localeCompare(b.name, "it"));
     }
 
 
@@ -2017,10 +1706,7 @@ button {
         const creditors = getCreditors();
 
         if (!creditors.length) {
-
-            container.innerHTML =
-                '<div class="empty">Nessun credito da riscuotere</div>';
-
+            container.innerHTML = '<div class="empty">Nessun credito da riscuotere</div>';
             return;
         }
 
@@ -2032,13 +1718,9 @@ button {
 
             row.innerHTML = `
 
-                <div class="creditor-name">
-                    ${escapeHtml(person.name)}
-                </div>
+                <div class="creditor-name">${escapeHtml(person.name)}</div>
 
-                <div class="creditor-debt">
-                    ${money(person.debt)}
-                </div>
+                <div class="creditor-debt">${money(person.debt)}</div>
 
                 <button
                     class="creditor-button"
@@ -2085,14 +1767,10 @@ button {
 
             const saleDebt = Math.max(
                 0,
-                number(sale.owed) -
-                number(data.creditorPayments[sale.id])
+                number(sale.owed) - number(data.creditorPayments[sale.id])
             );
 
-            const payment = Math.min(
-                saleDebt,
-                remainingPayment
-            );
+            const payment = Math.min(saleDebt, remainingPayment);
 
             data.creditorPayments[sale.id] =
                 number(data.creditorPayments[sale.id]) + payment;
@@ -2102,7 +1780,7 @@ button {
         });
 
         saveData();
-        renderCreditors();
+        update();
     }
 
 
@@ -2116,10 +1794,7 @@ button {
 
         if (!sale) return;
 
-        const buyerName = prompt(
-            "Nome acquirente:",
-            sale.buyerName
-        );
+        const buyerName = prompt("Nome acquirente:", sale.buyerName);
 
         if (buyerName === null) return;
 
@@ -2128,40 +1803,41 @@ button {
             return;
         }
 
-        const quantityText = prompt(
-            "Quantità venduta:",
-            sale.quantity
-        );
+        const quantityText = prompt("Quantità venduta:", sale.quantity);
 
         if (quantityText === null) return;
 
         const quantity = number(quantityText);
 
-        const available =
-            getLoadStats(load).remaining + number(sale.quantity);
+        const available = getLoadStats(load).remaining + number(sale.quantity);
 
-        if (
-            quantity <= 0 ||
-            quantity > available
-        ) {
+        if (quantity <= 0 || quantity > available) {
             alert("Quantità non valida o superiore alla disponibilità.");
             return;
         }
 
-        const priceText = prompt(
-            "Prezzo totale:",
-            sale.price
-        );
+        const priceText = prompt("Prezzo totale:", sale.price);
 
         if (priceText === null) return;
 
         const price = number(priceText);
 
-        if (
-            price < 0 ||
-            !Number.isFinite(parseFloat(priceText))
-        ) {
+        if (price < 0 || !Number.isFinite(parseFloat(priceText))) {
             alert("Inserisci un prezzo valido.");
+            return;
+        }
+
+        const dateText = prompt(
+            "Data vendita (AAAA-MM-GG):",
+            dateInputValue(sale.date)
+        );
+
+        if (dateText === null) return;
+
+        const newDate = dateFromInput(dateText);
+
+        if (!newDate) {
+            alert("Inserisci una data valida nel formato AAAA-MM-GG.");
             return;
         }
 
@@ -2173,10 +1849,7 @@ button {
 
         if (!paid) {
 
-            const receivedText = prompt(
-                "Quanto hai già ricevuto?",
-                sale.received
-            );
+            const receivedText = prompt("Quanto hai già ricevuto?", sale.received);
 
             if (receivedText === null) return;
 
@@ -2195,9 +1868,12 @@ button {
         sale.buyerName = buyerName.trim();
         sale.quantity = quantity;
         sale.price = price;
+        sale.date = newDate;
         sale.received = received;
         sale.owed = paid ? 0 : price - received;
         sale.paid = paid;
+
+        delete data.creditorPayments[sale.id];
 
         saveData();
         update();
@@ -2207,7 +1883,6 @@ button {
     function updateSaleAmounts() {
 
         const price = number($("salePrice").value);
-
         const paid = $("salePaid").checked;
 
         let received = number($("saleReceived").value);
@@ -2216,9 +1891,7 @@ button {
 
             received = price;
 
-            $("saleReceived").value =
-                price > 0 ? price : "";
-
+            $("saleReceived").value = price > 0 ? price : "";
             $("saleReceived").readOnly = true;
 
         } else {
@@ -2232,476 +1905,380 @@ button {
     }
 
 
-    $("salePrice").addEventListener(
-        "input",
-        updateSaleAmounts
-    );
-
-    $("saleReceived").addEventListener(
-        "input",
-        updateSaleAmounts
-    );
-
-    $("salePaid").addEventListener(
-        "change",
-        updateSaleAmounts
-    );
+    $("salePrice").addEventListener("input", updateSaleAmounts);
+    $("saleReceived").addEventListener("input", updateSaleAmounts);
+    $("salePaid").addEventListener("change", updateSaleAmounts);
 
 
-    $("creditorsList").addEventListener(
-        "click",
-        event => {
+    $("creditorsList").addEventListener("click", event => {
 
-            const button =
-                event.target.closest("[data-creditor]");
+        const button = event.target.closest("[data-creditor]");
 
-            if (!button) return;
+        if (!button) return;
 
-            registerCreditorPayment(button.dataset.creditor);
+        registerCreditorPayment(button.dataset.creditor);
+    });
+
+
+    $("dashboardToggle").addEventListener("click", () => {
+
+        const details = $("loadDetails");
+        const chevron = $("dashboardChevron");
+
+        const isHidden = details.classList.contains("hidden");
+
+        if (isHidden) {
+            details.classList.remove("hidden");
+            chevron.classList.add("open");
+        } else {
+            details.classList.add("hidden");
+            chevron.classList.remove("open");
         }
-    );
+    });
 
 
-    $("dashboardToggle").addEventListener(
-        "click",
-        () => {
+    $("loadDetails").addEventListener("click", event => {
 
-            const details = $("loadDetails");
+        const editButton = event.target.closest("[data-edit-load]");
+        const saveButton = event.target.closest("[data-save-load]");
+        const cancelButton = event.target.closest("[data-cancel-load]");
 
-            const chevron = $("dashboardChevron");
 
-            const isHidden =
-                details.classList.contains("hidden");
+        if (editButton) {
 
-            if (isHidden) {
+            editingLoadId = editButton.dataset.editLoad;
 
-                details.classList.remove("hidden");
+            renderLoadDetails();
 
-                chevron.classList.add("open");
-
-            } else {
-
-                details.classList.add("hidden");
-
-                chevron.classList.remove("open");
-            }
+            return;
         }
-    );
 
 
-    $("loadDetails").addEventListener(
-        "click",
-        event => {
+        if (cancelButton) {
 
-            const editButton =
-                event.target.closest("[data-edit-load]");
+            editingLoadId = null;
 
-            const saveButton =
-                event.target.closest("[data-save-load]");
+            renderLoadDetails();
 
-            const cancelButton =
-                event.target.closest("[data-cancel-load]");
-
-
-            if (editButton) {
-
-                editingLoadId = editButton.dataset.editLoad;
-
-                renderLoadDetails();
-
-                return;
-            }
-
-
-            if (cancelButton) {
-
-                editingLoadId = null;
-
-                renderLoadDetails();
-
-                return;
-            }
-
-
-            if (saveButton) {
-
-                const loadId = saveButton.dataset.saveLoad;
-
-                const load = data.loads.find(
-                    item => item.id === loadId
-                );
-
-                if (!load) return;
-
-                const card = saveButton.closest(".load-card");
-
-                const name = card.querySelector(
-                    '[data-load-field="name"]'
-                ).value.trim();
-
-                const quantityText = card.querySelector(
-                    '[data-load-field="quantity"]'
-                ).value;
-
-                const costText = card.querySelector(
-                    '[data-load-field="cost"]'
-                ).value;
-
-                const quantity = number(quantityText);
-
-                const cost = number(costText);
-
-                if (!name) {
-                    alert("Inserisci un nome valido.");
-                    return;
-                }
-
-                if (
-                    quantity <= 0 ||
-                    !Number.isFinite(parseFloat(quantityText))
-                ) {
-                    alert("Inserisci una quantità valida.");
-                    return;
-                }
-
-                if (
-                    quantity < getLoadStats(load).soldQuantity
-                ) {
-                    alert("La quantità iniziale non può essere inferiore a quella già venduta.");
-                    return;
-                }
-
-                if (
-                    cost < 0 ||
-                    !Number.isFinite(parseFloat(costText))
-                ) {
-                    alert("Inserisci un costo valido.");
-                    return;
-                }
-
-                load.name = name;
-                load.initialQuantity = quantity;
-                load.initialCost = cost;
-
-                editingLoadId = null;
-
-                saveData();
-                update();
-
-                return;
-            }
+            return;
         }
-    );
 
 
-    $("saveInitial").addEventListener(
-        "click",
-        () => {
+        if (saveButton) {
 
-            const name = $("initialName").value.trim();
+            const loadId = saveButton.dataset.saveLoad;
 
-            const quantity = number($("initialQty").value);
+            const load = data.loads.find(item => item.id === loadId);
 
-            const cost = number($("initialPrice").value);
+            if (!load) return;
+
+            const card = saveButton.closest(".load-card");
+
+            const name = card.querySelector('[data-load-field="name"]').value.trim();
+
+            const quantityText = card.querySelector('[data-load-field="quantity"]').value;
+
+            const costText = card.querySelector('[data-load-field="cost"]').value;
+
+            const dateText = card.querySelector('[data-load-field="date"]').value;
+
+            const quantity = number(quantityText);
+            const cost = number(costText);
+            const date = dateFromInput(dateText);
 
             if (!name) {
-
-                $("initialMessage").textContent =
-                    "Inserisci un nome per il carico.";
-
+                alert("Inserisci un nome valido.");
                 return;
             }
 
-            if (quantity <= 0) {
-
-                $("initialMessage").textContent =
-                    "Inserisci una quantità valida.";
-
+            if (quantity <= 0 || !Number.isFinite(parseFloat(quantityText))) {
+                alert("Inserisci una quantità valida.");
                 return;
             }
 
-            if (cost < 0) {
-
-                $("initialMessage").textContent =
-                    "Inserisci un costo valido.";
-
+            if (quantity < getLoadStats(load).soldQuantity) {
+                alert("La quantità iniziale non può essere inferiore a quella già venduta.");
                 return;
             }
 
-            const newLoad = {
-
-                id: generateId(),
-
-                name: name,
-
-                initialQuantity: quantity,
-
-                initialCost: cost,
-
-                date: new Date().toISOString(),
-
-                sales: []
-            };
-
-            data.loads.push(newLoad);
-
-            saveData();
-            update();
-
-            $("initialName").value = "";
-            $("initialQty").value = "";
-            $("initialPrice").value = "";
-
-            $("initialMessage").textContent =
-                "Carico iniziale salvato.";
-        }
-    );
-
-
-    $("addSale").addEventListener(
-        "click",
-        () => {
-
-            const loadId = $("saleLoad").value;
-
-            const buyerName = $("buyerName").value.trim();
-
-            const quantity = number($("saleQty").value);
-
-            const price = number($("salePrice").value);
-
-            const paid = $("salePaid").checked;
-
-            const received = paid
-                ? price
-                : number($("saleReceived").value);
-
-            const owed = Math.max(0, price - received);
-
-            if (!loadId) {
-
-                $("saleMessage").textContent =
-                    "Seleziona un carico.";
-
+            if (cost < 0 || !Number.isFinite(parseFloat(costText))) {
+                alert("Inserisci un costo valido.");
                 return;
             }
 
-            if (!buyerName) {
-
-                $("saleMessage").textContent =
-                    "Inserisci il nome dell'acquirente.";
-
+            if (!date) {
+                alert("Inserisci una data valida.");
                 return;
             }
 
-            const load = data.loads.find(
-                item => item.id === loadId
-            );
-
-            if (!load) {
-
-                $("saleMessage").textContent =
-                    "Carico non trovato.";
-
-                return;
-            }
-
-            const stats = getLoadStats(load);
-
-            if (quantity <= 0) {
-
-                $("saleMessage").textContent =
-                    "Inserisci una quantità valida.";
-
-                return;
-            }
-
-            if (quantity > stats.remaining) {
-
-                $("saleMessage").textContent =
-                    "La quantità supera quella disponibile nel carico.";
-
-                return;
-            }
-
-            if (
-                !Number.isFinite(parseFloat($("salePrice").value)) ||
-                price < 0
-            ) {
-
-                $("saleMessage").textContent =
-                    "Inserisci un prezzo valido.";
-
-                return;
-            }
-
-            if (
-                !paid &&
-                (
-                    !Number.isFinite(parseFloat($("saleReceived").value)) ||
-                    received < 0 ||
-                    received > price
-                )
-            ) {
-
-                $("saleMessage").textContent =
-                    "Inserisci un importo ricevuto valido.";
-
-                return;
-            }
-
-            if (!Array.isArray(load.sales)) {
-                load.sales = [];
-            }
-
-            load.sales.push({
-
-                id: generateId(),
-
-                buyerName: buyerName,
-
-                quantity: quantity,
-
-                price: price,
-
-                received: received,
-
-                owed: owed,
-
-                date: new Date().toISOString(),
-
-                paid: paid
-            });
-
-            saveData();
-            update();
-
-            $("buyerName").value = "";
-            $("saleQty").value = "";
-            $("salePrice").value = "";
-            $("saleReceived").value = "";
-            $("saleOwed").value = "0";
-            $("salePaid").checked = false;
-            $("saleReceived").readOnly = false;
-
-            $("saleMessage").textContent =
-                "Vendita aggiunta.";
-        }
-    );
-
-
-    $("salesList").addEventListener(
-        "click",
-        event => {
-
-            const editButton =
-                event.target.closest("[data-edit-sale-id]");
-
-            if (editButton) {
-
-                event.stopPropagation();
-
-                editSale(
-                    editButton.dataset.editSaleLoad,
-                    editButton.dataset.editSaleId
-                );
-
-                return;
-            }
-
-            const deleteButton =
-                event.target.closest(".delete-sale");
-
-            if (deleteButton) {
-
-                event.stopPropagation();
-
-                const loadId = deleteButton.dataset.loadId;
-
-                const saleId = deleteButton.dataset.saleId;
-
-                const load = data.loads.find(
-                    item => item.id === loadId
-                );
-
-                if (!load) return;
-
-                const saleIndex = load.sales.findIndex(
-                    sale => sale.id === saleId
-                );
-
-                if (saleIndex < 0) return;
-
-                const confirmed = confirm(
-                    "Vuoi eliminare questa vendita?"
-                );
-
-                if (!confirmed) return;
-
-                delete data.creditorPayments[saleId];
-
-                load.sales.splice(saleIndex, 1);
-
-                saveData();
-                update();
-
-                return;
-            }
-
-            const entry = event.target.closest(".history-entry");
-
-            if (!entry) return;
-
-            const detail = entry.querySelector(".detail-popup");
-
-            if (!detail) return;
-
-            detail.classList.toggle("hidden");
-        }
-    );
-
-
-    $("reset").addEventListener(
-        "click",
-        () => {
-
-            const confirmed = confirm(
-                "Vuoi cancellare TUTTI i dati? Questa operazione non può essere annullata."
-            );
-
-            if (!confirmed) return;
-
-            data = {
-                loads: [],
-                creditorPayments: {}
-            };
+            load.name = name;
+            load.initialQuantity = quantity;
+            load.initialCost = cost;
+            load.date = date;
 
             editingLoadId = null;
 
             saveData();
-
-            $("initialName").value = "";
-            $("initialQty").value = "";
-            $("initialPrice").value = "";
-
-            $("buyerName").value = "";
-            $("saleQty").value = "";
-            $("salePrice").value = "";
-            $("saleReceived").value = "";
-            $("saleOwed").value = "0";
-            $("salePaid").checked = false;
-            $("saleReceived").readOnly = false;
-
-            $("initialMessage").textContent = "";
-            $("saleMessage").textContent = "";
-
             update();
 
-            $("loadDetails").classList.add("hidden");
-
-            $("dashboardChevron").classList.remove("open");
+            return;
         }
-    );
+    });
+
+
+    $("saveInitial").addEventListener("click", () => {
+
+        const name = $("initialName").value.trim();
+        const quantity = number($("initialQty").value);
+        const cost = number($("initialPrice").value);
+        const date = dateFromInput($("initialDate").value);
+
+        if (!name) {
+            $("initialMessage").textContent = "Inserisci un nome per il carico.";
+            return;
+        }
+
+        if (quantity <= 0) {
+            $("initialMessage").textContent = "Inserisci una quantità valida.";
+            return;
+        }
+
+        if (cost < 0) {
+            $("initialMessage").textContent = "Inserisci un costo valido.";
+            return;
+        }
+
+        if (!date) {
+            $("initialMessage").textContent = "Inserisci una data valida.";
+            return;
+        }
+
+        const newLoad = {
+            id: generateId(),
+            name: name,
+            initialQuantity: quantity,
+            initialCost: cost,
+            date: date,
+            sales: []
+        };
+
+        data.loads.push(newLoad);
+
+        saveData();
+        update();
+
+        $("initialName").value = "";
+        $("initialQty").value = "";
+        $("initialPrice").value = "";
+        $("initialDate").value = dateInputValue(new Date());
+
+        $("initialMessage").textContent = "Carico iniziale salvato.";
+    });
+
+
+    $("addSale").addEventListener("click", () => {
+
+        const loadId = $("saleLoad").value;
+        const buyerName = $("buyerName").value.trim();
+        const quantity = number($("saleQty").value);
+        const price = number($("salePrice").value);
+        const date = dateFromInput($("saleDate").value);
+
+        const paid = $("salePaid").checked;
+
+        const received = paid
+            ? price
+            : number($("saleReceived").value);
+
+        const owed = Math.max(0, price - received);
+
+        if (!loadId) {
+            $("saleMessage").textContent = "Seleziona un carico.";
+            return;
+        }
+
+        if (!buyerName) {
+            $("saleMessage").textContent = "Inserisci il nome dell'acquirente.";
+            return;
+        }
+
+        const load = data.loads.find(item => item.id === loadId);
+
+        if (!load) {
+            $("saleMessage").textContent = "Carico non trovato.";
+            return;
+        }
+
+        const stats = getLoadStats(load);
+
+        if (quantity <= 0) {
+            $("saleMessage").textContent = "Inserisci una quantità valida.";
+            return;
+        }
+
+        if (quantity > stats.remaining) {
+            $("saleMessage").textContent = "La quantità supera quella disponibile nel carico.";
+            return;
+        }
+
+        if (!Number.isFinite(parseFloat($("salePrice").value)) || price < 0) {
+            $("saleMessage").textContent = "Inserisci un prezzo valido.";
+            return;
+        }
+
+        if (!date) {
+            $("saleMessage").textContent = "Inserisci una data valida.";
+            return;
+        }
+
+        if (
+            !paid &&
+            (
+                !Number.isFinite(parseFloat($("saleReceived").value)) ||
+                received < 0 ||
+                received > price
+            )
+        ) {
+            $("saleMessage").textContent = "Inserisci un importo ricevuto valido.";
+            return;
+        }
+
+        if (!Array.isArray(load.sales)) {
+            load.sales = [];
+        }
+
+        load.sales.push({
+
+            id: generateId(),
+            buyerName: buyerName,
+            quantity: quantity,
+            price: price,
+            received: received,
+            owed: owed,
+            date: date,
+            paid: paid
+
+        });
+
+        saveData();
+        update();
+
+        $("buyerName").value = "";
+        $("saleQty").value = "";
+        $("salePrice").value = "";
+        $("saleReceived").value = "";
+        $("saleOwed").value = "0";
+        $("salePaid").checked = false;
+        $("saleReceived").readOnly = false;
+        $("saleDate").value = dateInputValue(new Date());
+
+        $("saleMessage").textContent = "Vendita aggiunta.";
+    });
+
+
+    $("salesList").addEventListener("click", event => {
+
+        const editButton = event.target.closest("[data-edit-sale-id]");
+
+        if (editButton) {
+
+            event.stopPropagation();
+
+            editSale(
+                editButton.dataset.editSaleLoad,
+                editButton.dataset.editSaleId
+            );
+
+            return;
+        }
+
+        const deleteButton = event.target.closest(".delete-sale");
+
+        if (deleteButton) {
+
+            event.stopPropagation();
+
+            const loadId = deleteButton.dataset.loadId;
+            const saleId = deleteButton.dataset.saleId;
+
+            const load = data.loads.find(item => item.id === loadId);
+
+            if (!load) return;
+
+            const saleIndex = load.sales.findIndex(sale => sale.id === saleId);
+
+            if (saleIndex < 0) return;
+
+            const confirmed = confirm("Vuoi eliminare questa vendita?");
+
+            if (!confirmed) return;
+
+            delete data.creditorPayments[saleId];
+
+            load.sales.splice(saleIndex, 1);
+
+            saveData();
+            update();
+
+            return;
+        }
+
+        const entry = event.target.closest(".history-entry");
+
+        if (!entry) return;
+
+        const detail = entry.querySelector(".detail-popup");
+
+        if (!detail) return;
+
+        detail.classList.toggle("hidden");
+    });
+
+
+    $("reset").addEventListener("click", () => {
+
+        const confirmed = confirm(
+            "Vuoi cancellare TUTTI i dati? Questa operazione non può essere annullata."
+        );
+
+        if (!confirmed) return;
+
+        data = {
+            loads: [],
+            creditorPayments: {}
+        };
+
+        editingLoadId = null;
+
+        saveData();
+
+        $("initialName").value = "";
+        $("initialQty").value = "";
+        $("initialPrice").value = "";
+        $("initialDate").value = dateInputValue(new Date());
+
+        $("buyerName").value = "";
+        $("saleQty").value = "";
+        $("salePrice").value = "";
+        $("saleReceived").value = "";
+        $("saleOwed").value = "0";
+        $("salePaid").checked = false;
+        $("saleReceived").readOnly = false;
+        $("saleDate").value = dateInputValue(new Date());
+
+        $("initialMessage").textContent = "";
+        $("saleMessage").textContent = "";
+
+        update();
+
+        $("loadDetails").classList.add("hidden");
+        $("dashboardChevron").classList.remove("open");
+    });
+
+
+    // DATE PREDEFINITE
+    $("initialDate").value = dateInputValue(new Date());
+    $("saleDate").value = dateInputValue(new Date());
 
 
     // ATTENDE IL RECUPERO DEI DATI PRIMA DI AVVIARE L'APP
