@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -90,14 +89,27 @@ label {
 
 input,
 select {
+    display: block;
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     height: 48px;
     border: 1px solid #ddd;
     border-radius: 13px;
     padding: 0 13px;
     font-size: 17px;
+    font-family: inherit;
     background: #fafafa;
     outline: none;
+}
+
+input[type="date"] {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    display: block;
+    padding: 0 13px;
+    -webkit-appearance: none;
 }
 
 input:focus,
@@ -506,7 +518,7 @@ button {
                 </div>
 
                 <div class="stat">
-                    <div class="stat-label">Ricavi</div>
+                    <div class="stat-label">Incasso Lordo</div>
                     <div class="stat-value" id="revenue">€0,00</div>
                 </div>
 
@@ -649,13 +661,13 @@ button {
         <div class="grid">
 
             <div class="stat">
-                <div class="stat-label">Costo per me</div>
-                <div class="stat-value" id="soldCost">€0,00</div>
+                <div class="stat-label">Incasso Lordo</div>
+                <div class="stat-value" id="profit">€0,00</div>
             </div>
 
             <div class="stat">
-                <div class="stat-label">Incasso lordo</div>
-                <div class="stat-value" id="profit">€0,00</div>
+                <div class="stat-label">Costo (Costo per Me)</div>
+                <div class="stat-value" id="soldCost">€0,00</div>
             </div>
 
             <div class="stat">
@@ -664,7 +676,7 @@ button {
             </div>
 
             <div class="stat">
-                <div class="stat-label">Guadagno netto</div>
+                <div class="stat-label">Incasso Netto</div>
                 <div class="stat-value" id="netRevenue">€0,00</div>
             </div>
 
@@ -1233,7 +1245,7 @@ button {
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Ricavi</div>
+                        <div class="load-stat-label">Incasso Lordo</div>
                         <div class="load-stat-value">${money(stats.revenue)}</div>
                     </div>
 
@@ -1248,7 +1260,7 @@ button {
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Guadagno lordo</div>
+                        <div class="load-stat-label">Incasso Netto</div>
                         <div class="load-stat-value">${money(stats.profit)}</div>
                     </div>
 
@@ -1597,7 +1609,7 @@ button {
 
         });
 
-        return Object.values(clients).sort((a, b) => a.name.localeCompare(b.name, "it"));
+        return Object.values(clients).sort((a, b) => b.quantity - a.quantity);
     }
 
 
