@@ -108,8 +108,17 @@ input[type="date"] {
     min-width: 0;
     max-width: 100%;
     display: block;
+    height: 48px;
     padding: 0 13px;
+    text-align: center;
+    text-align-last: center;
+    line-height: 48px;
     -webkit-appearance: none;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+    text-align: center;
+    margin: 0 auto;
 }
 
 input:focus,
@@ -456,9 +465,12 @@ button {
 }
 
 @media (max-width: 380px) {
-    .grid,
     .load-grid {
         grid-template-columns: 1fr;
+    }
+
+    .client-card .load-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
     .creditor-row {
@@ -489,7 +501,7 @@ button {
     <div class="card">
 
         <div class="dashboard-header clickable" id="dashboardToggle">
-            <div class="card-title">Situazione attuale</div>
+            <div class="card-title"></div>
             <div class="chevron" id="dashboardChevron">▼</div>
         </div>
 
@@ -508,13 +520,23 @@ button {
                 </div>
 
                 <div class="stat">
-                    <div class="stat-label">Quantità venduta</div>
-                    <div class="stat-value" id="soldQuantity">0 g</div>
+                    <div class="stat-label">Costo iniziale</div>
+                    <div class="stat-value" id="initialCost">€0,00</div>
                 </div>
 
                 <div class="stat">
-                    <div class="stat-label">Costo iniziale</div>
-                    <div class="stat-value" id="initialCost">€0,00</div>
+                    <div class="stat-label">Costo al grammo</div>
+                    <div class="stat-value" id="costPerGram">0,00 €/g</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Prezzo medio vendita</div>
+                    <div class="stat-value" id="salePerGram">0,00 €/g</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Quantità venduta</div>
+                    <div class="stat-value" id="soldQuantity">0 g</div>
                 </div>
 
                 <div class="stat">
@@ -523,13 +545,18 @@ button {
                 </div>
 
                 <div class="stat">
-                    <div class="stat-label">Costo / grammo</div>
-                    <div class="stat-value" id="costPerGram">€0,00</div>
+                    <div class="stat-label">Costo per Me</div>
+                    <div class="stat-value" id="soldCost">€0,00</div>
                 </div>
 
                 <div class="stat">
-                    <div class="stat-label">Prezzo medio vendita</div>
-                    <div class="stat-value" id="salePerGram">€0,00</div>
+                    <div class="stat-label">Incasso Netto</div>
+                    <div class="stat-value" id="netRevenue">€0,00</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Margine</div>
+                    <div class="stat-value" id="margin">0%</div>
                 </div>
 
             </div>
@@ -650,37 +677,6 @@ button {
             <div class="empty">Nessun credito da riscuotere</div>
         </div>
 
-    </div>
-
-
-    <!-- RISULTATO -->
-    <div class="card">
-
-        <div class="card-title">Risultato</div>
-
-        <div class="grid">
-
-            <div class="stat">
-                <div class="stat-label">Incasso Lordo</div>
-                <div class="stat-value" id="profit">€0,00</div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-label">Costo (Costo per Me)</div>
-                <div class="stat-value" id="soldCost">€0,00</div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-label">Margine</div>
-                <div class="stat-value" id="margin">0%</div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-label">Incasso Netto</div>
-                <div class="stat-value" id="netRevenue">€0,00</div>
-            </div>
-
-        </div>
     </div>
 
 
@@ -975,6 +971,11 @@ button {
     }
 
 
+    function pricePerGram(value) {
+        return money(value).replace(/\s*€$/, " €/g");
+    }
+
+
     function grams(value) {
         const n = Number.isFinite(value) ? value : 0;
 
@@ -1140,11 +1141,9 @@ button {
         $("remaining").textContent = grams(stats.remaining);
         $("initialCost").textContent = money(stats.initialCost);
         $("revenue").textContent = money(stats.revenue);
-        $("costPerGram").textContent = money(stats.costPerGram);
-        $("salePerGram").textContent = money(stats.averageSalePrice);
+        $("costPerGram").textContent = pricePerGram(stats.costPerGram);
+        $("salePerGram").textContent = pricePerGram(stats.averageSalePrice);
         $("soldCost").textContent = money(stats.soldCost);
-
-        $("profit").textContent = money(stats.revenue);
         $("margin").textContent = percentage(stats.margin);
         $("netRevenue").textContent = money(stats.profit);
 
@@ -1241,7 +1240,7 @@ button {
 
                     <div class="load-stat">
                         <div class="load-stat-label">Costo / grammo</div>
-                        <div class="load-stat-value">${money(stats.costPerGram)}</div>
+                        <div class="load-stat-value">${pricePerGram(stats.costPerGram)}</div>
                     </div>
 
                     <div class="load-stat">
@@ -1251,7 +1250,7 @@ button {
 
                     <div class="load-stat">
                         <div class="load-stat-label">Prezzo medio vendita</div>
-                        <div class="load-stat-value">${money(stats.averageSalePrice)}</div>
+                        <div class="load-stat-value">${pricePerGram(stats.averageSalePrice)}</div>
                     </div>
 
                     <div class="load-stat">
@@ -1421,7 +1420,7 @@ button {
                     </div>
 
                     <div class="history-info">
-                        Carico iniziale · ${grams(item.quantity)} · ${money(costPerGram)} / g
+                        Carico iniziale · ${grams(item.quantity)} · ${pricePerGram(costPerGram)}
                     </div>
 
                     <div class="history-date">${formatDate(item.date)}</div>
@@ -1444,7 +1443,7 @@ button {
 
                             <div class="load-stat">
                                 <div class="load-stat-label">Costo / grammo</div>
-                                <div class="load-stat-value">${money(costPerGram)}</div>
+                                <div class="load-stat-value">${pricePerGram(costPerGram)}</div>
                             </div>
 
                             <div class="load-stat">
@@ -1459,7 +1458,7 @@ button {
 
             } else {
 
-                const pricePerGram = item.quantity > 0 ? item.price / item.quantity : 0;
+                const pricePerGramValue = item.quantity > 0 ? item.price / item.quantity : 0;
 
                 const buyerText = item.buyerName
                     ? escapeHtml(item.buyerName)
@@ -1476,7 +1475,7 @@ button {
                     </div>
 
                     <div class="history-info">
-                        ${escapeHtml(item.name)} · ${grams(item.quantity)} · ${money(pricePerGram)} / g
+                        ${escapeHtml(item.name)} · ${grams(item.quantity)} · ${pricePerGram(pricePerGramValue)}
                     </div>
 
                     ${item.owed > 0 ? `
@@ -1525,7 +1524,7 @@ button {
 
                             <div class="load-stat">
                                 <div class="load-stat-label">Prezzo / grammo</div>
-                                <div class="load-stat-value">${money(pricePerGram)}</div>
+                                <div class="load-stat-value">${pricePerGram(pricePerGramValue)}</div>
                             </div>
 
                             <div class="load-stat">
@@ -1630,6 +1629,9 @@ button {
 
             const average = client.quantity > 0 ? client.revenue / client.quantity : 0;
             const net = client.revenue - client.cost;
+            const margin = client.revenue > 0
+                ? (net / client.revenue) * 100
+                : 0;
 
             const card = document.createElement("div");
 
@@ -1642,23 +1644,33 @@ button {
                 <div class="load-grid">
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Quantità venduta</div>
+                        <div class="load-stat-label">Quantità Venduta</div>
                         <div class="load-stat-value">${grams(client.quantity)}</div>
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Prezzo medio / grammo</div>
-                        <div class="load-stat-value">${money(average)}</div>
-                    </div>
-
-                    <div class="load-stat">
-                        <div class="load-stat-label">Totale incassato</div>
+                        <div class="load-stat-label">Totale Incasso</div>
                         <div class="load-stat-value">${money(client.revenue)}</div>
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Netto incassato</div>
+                        <div class="load-stat-label">Costo per Me</div>
+                        <div class="load-stat-value">${money(client.cost)}</div>
+                    </div>
+
+                    <div class="load-stat">
+                        <div class="load-stat-label">Incasso Netto</div>
                         <div class="load-stat-value">${money(net)}</div>
+                    </div>
+
+                    <div class="load-stat">
+                        <div class="load-stat-label">Prezzo al Grammo</div>
+                        <div class="load-stat-value">${pricePerGram(average)}</div>
+                    </div>
+
+                    <div class="load-stat">
+                        <div class="load-stat-label">Margine</div>
+                        <div class="load-stat-value">${percentage(margin)}</div>
                     </div>
 
                 </div>
