@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -548,6 +547,11 @@ button {
                 <div class="stat">
                     <div class="stat-label">Incasso Lordo</div>
                     <div class="stat-value" id="revenue">€0,00</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Prezzo di vendita</div>
+                    <div class="stat-value" id="salePricePerGram">0,00 €/g</div>
                 </div>
 
                 <div class="stat">
@@ -1153,6 +1157,7 @@ button {
         $("remaining").textContent = grams(stats.remaining);
         $("initialCost").textContent = money(stats.initialCost);
         $("revenue").textContent = money(stats.revenue);
+        $("salePricePerGram").textContent = pricePerGram(stats.averageSalePrice);
         $("costPerGram").textContent = pricePerGram(stats.costPerGram);
         $("soldCost").textContent = money(stats.soldCost);
         $("margin").textContent = percentage(stats.margin);
