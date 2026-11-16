@@ -1260,7 +1260,7 @@ button {
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Costo / grammo</div>
+                        <div class="load-stat-label">Costo al grammo</div>
                         <div class="load-stat-value">${pricePerGram(stats.costPerGram)}</div>
                     </div>
 
@@ -1270,12 +1270,12 @@ button {
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Prezzo medio vendita</div>
+                        <div class="load-stat-label">Prezzo di vendita</div>
                         <div class="load-stat-value">${pricePerGram(stats.averageSalePrice)}</div>
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Costo venduto</div>
+                        <div class="load-stat-label">Costo per Me</div>
                         <div class="load-stat-value">${money(stats.soldCost)}</div>
                     </div>
 
@@ -1290,7 +1290,7 @@ button {
                     </div>
 
                     <div class="load-stat">
-                        <div class="load-stat-label">Valore residuo</div>
+                        <div class="load-stat-label">Valore stimato rimanenza</div>
                         <div class="load-stat-value">${money(stats.remainingValue)}</div>
                     </div>
 
@@ -1476,7 +1476,7 @@ button {
                             </div>
 
                             <div class="load-stat">
-                                <div class="load-stat-label">Costo / grammo</div>
+                                <div class="load-stat-label">Costo al grammo</div>
                                 <div class="load-stat-value">${pricePerGram(costPerGram)}</div>
                             </div>
 
@@ -1538,7 +1538,7 @@ button {
                             </div>
 
                             <div class="load-stat">
-                                <div class="load-stat-label">Quantità</div>
+                                <div class="load-stat-label">Quantità venduta</div>
                                 <div class="load-stat-value">${grams(item.quantity)}</div>
                             </div>
 
@@ -1558,13 +1558,8 @@ button {
                             </div>
 
                             <div class="load-stat">
-                                <div class="load-stat-label">Prezzo / grammo</div>
+                                <div class="load-stat-label">Prezzo al grammo</div>
                                 <div class="load-stat-value">${pricePerGram(pricePerGramValue)}</div>
-                            </div>
-
-                            <div class="load-stat">
-                                <div class="load-stat-label">Pagamento</div>
-                                <div class="load-stat-value">${item.owed === 0 ? "Pagata" : "Da ricevere"}</div>
                             </div>
 
                             <div class="load-stat">
@@ -1947,9 +1942,11 @@ button {
 
         if (editButton) {
 
+            editingSaleId = null;
             editingLoadId = editButton.dataset.editLoad;
 
             renderLoadDetails();
+            renderHistory();
 
             return;
         }
@@ -2204,8 +2201,10 @@ button {
 
             event.stopPropagation();
 
+            editingLoadId = null;
             editingSaleId = editButton.dataset.editSaleId;
 
+            renderLoadDetails();
             renderHistory();
 
             return;
@@ -2355,7 +2354,15 @@ button {
 
         if (!detail) return;
 
-        detail.classList.toggle("hidden");
+        const isOpening = detail.classList.contains("hidden");
+
+        $("salesList").querySelectorAll(".detail-popup").forEach(popup => {
+            popup.classList.add("hidden");
+        });
+
+        if (isOpening) {
+            detail.classList.remove("hidden");
+        }
     });
 
 
