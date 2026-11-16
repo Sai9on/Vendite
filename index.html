@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -285,6 +286,16 @@ button {
     font-weight: 700;
 }
 
+.load-progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.load-progress .progress-container {
+    margin-top: 4px;
+}
+
 .history-entry {
     padding: 14px 0;
     border-bottom: 1px solid #eee;
@@ -520,6 +531,11 @@ button {
                 </div>
 
                 <div class="stat">
+                    <div class="stat-label">Quantità venduta</div>
+                    <div class="stat-value" id="soldQuantity">0 g</div>
+                </div>
+
+                <div class="stat">
                     <div class="stat-label">Costo iniziale</div>
                     <div class="stat-value" id="initialCost">€0,00</div>
                 </div>
@@ -527,16 +543,6 @@ button {
                 <div class="stat">
                     <div class="stat-label">Costo al grammo</div>
                     <div class="stat-value" id="costPerGram">0,00 €/g</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-label">Prezzo medio vendita</div>
-                    <div class="stat-value" id="salePerGram">0,00 €/g</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-label">Quantità venduta</div>
-                    <div class="stat-value" id="soldQuantity">0 g</div>
                 </div>
 
                 <div class="stat">
@@ -557,6 +563,11 @@ button {
                 <div class="stat">
                     <div class="stat-label">Margine</div>
                     <div class="stat-value" id="margin">0%</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-label">Valore stimato rimanenza</div>
+                    <div class="stat-value" id="remainingValue">€0,00</div>
                 </div>
 
             </div>
@@ -700,6 +711,7 @@ button {
     };
 
     let editingLoadId = null;
+    let editingSaleId = null;
 
     const $ = id => document.getElementById(id);
 
@@ -1142,10 +1154,10 @@ button {
         $("initialCost").textContent = money(stats.initialCost);
         $("revenue").textContent = money(stats.revenue);
         $("costPerGram").textContent = pricePerGram(stats.costPerGram);
-        $("salePerGram").textContent = pricePerGram(stats.averageSalePrice);
         $("soldCost").textContent = money(stats.soldCost);
         $("margin").textContent = percentage(stats.margin);
         $("netRevenue").textContent = money(stats.profit);
+        $("remainingValue").textContent = money(stats.remainingValue);
 
         const progress = stats.initialQuantity > 0
             ? Math.min(100, Math.max(0, (stats.soldQuantity / stats.initialQuantity) * 100))
@@ -1205,6 +1217,10 @@ button {
             card.className = "load-card";
 
             const isEditing = editingLoadId === load.id;
+
+            const soldPercentage = stats.initialQuantity > 0
+                ? Math.min(100, Math.max(0, (stats.soldQuantity / stats.initialQuantity) * 100))
+                : 0;
 
             card.innerHTML = `
 
@@ -1271,6 +1287,19 @@ button {
                     <div class="load-stat">
                         <div class="load-stat-label">Valore residuo</div>
                         <div class="load-stat-value">${money(stats.remainingValue)}</div>
+                    </div>
+
+                    <div class="load-stat load-progress">
+                        <div class="load-stat-label">Percentuale venduto</div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" style="width:${soldPercentage}%"></div>
+                            </div>
+                            <div class="progress-label">
+                                <span>Venduto</span>
+                                <span>${percentage(soldPercentage)}</span>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -1459,6 +1488,7 @@ button {
             } else {
 
                 const pricePerGramValue = item.quantity > 0 ? item.price / item.quantity : 0;
+                const isEditing = editingSaleId === item.id;
 
                 const buyerText = item.buyerName
                     ? escapeHtml(item.buyerName)
@@ -1486,7 +1516,7 @@ button {
 
                     <div class="history-date">${formatDate(item.date)}</div>
 
-                    <div class="detail-popup hidden">
+                    <div class="detail-popup${isEditing ? "" : " hidden"}">
 
                         <div class="detail-popup-title">Dettagli vendita</div>
 
@@ -1539,12 +1569,50 @@ button {
 
                         </div>
 
-                        <button
-                            class="edit-button"
-                            type="button"
-                            data-edit-sale-load="${item.loadId}"
-                            data-edit-sale-id="${item.id}"
-                        >Modifica vendita</button>
+                        ${isEditing ? `
+
+                            <div class="edit-fields">
+
+                                <div class="card-title" style="font-size:15px;margin-bottom:8px">
+                                    Modifica vendita
+                                </div>
+
+                                <label>Nome acquirente</label>
+                                <input type="text" data-sale-field="buyer" value="${escapeHtml(item.sale.buyerName)}" maxlength="80">
+
+                                <label>Quantità venduta</label>
+                                <input type="number" min="0" step="0.01" data-sale-field="quantity" value="${item.sale.quantity}">
+
+                                <label>Prezzo totale</label>
+                                <input type="number" min="0" step="0.01" data-sale-field="price" value="${item.sale.price}">
+
+                                <label>Data vendita</label>
+                                <input type="date" data-sale-field="date" value="${dateInputValue(item.sale.date)}">
+
+                                <label>Ricevuto</label>
+                                <input type="number" min="0" step="0.01" data-sale-field="received" value="${item.sale.received}" ${item.sale.paid ? "readonly" : ""}>
+
+                                <div class="paid-row">
+                                    <input type="checkbox" data-sale-field="paid" ${item.sale.paid ? "checked" : ""}>
+                                    <label style="margin:0">Già pagata</label>
+                                </div>
+
+                                <button class="primary" type="button" data-save-sale="${item.id}" data-load-id="${item.loadId}">Salva modifiche</button>
+
+                                <button class="secondary" type="button" data-cancel-sale="${item.id}">Annulla</button>
+
+                            </div>
+
+                        ` : `
+
+                            <button
+                                class="edit-button"
+                                type="button"
+                                data-edit-sale-load="${item.loadId}"
+                                data-edit-sale-id="${item.id}"
+                            >Modifica vendita</button>
+
+                        `}
 
                         <button
                             class="delete-sale"
@@ -1802,102 +1870,6 @@ button {
             remainingPayment -= payment;
 
         });
-
-        saveData();
-        update();
-    }
-
-
-    function editSale(loadId, saleId) {
-
-        const load = data.loads.find(item => item.id === loadId);
-
-        if (!load) return;
-
-        const sale = load.sales.find(item => item.id === saleId);
-
-        if (!sale) return;
-
-        const buyerName = prompt("Nome acquirente:", sale.buyerName);
-
-        if (buyerName === null) return;
-
-        if (!buyerName.trim()) {
-            alert("Inserisci un nome valido.");
-            return;
-        }
-
-        const quantityText = prompt("Quantità venduta:", sale.quantity);
-
-        if (quantityText === null) return;
-
-        const quantity = number(quantityText);
-
-        const available = getLoadStats(load).remaining + number(sale.quantity);
-
-        if (quantity <= 0 || quantity > available) {
-            alert("Quantità non valida o superiore alla disponibilità.");
-            return;
-        }
-
-        const priceText = prompt("Prezzo totale:", sale.price);
-
-        if (priceText === null) return;
-
-        const price = number(priceText);
-
-        if (price < 0 || !Number.isFinite(parseFloat(priceText))) {
-            alert("Inserisci un prezzo valido.");
-            return;
-        }
-
-        const dateText = prompt(
-            "Data vendita (AAAA-MM-GG):",
-            dateInputValue(sale.date)
-        );
-
-        if (dateText === null) return;
-
-        const newDate = dateFromInput(dateText);
-
-        if (!newDate) {
-            alert("Inserisci una data valida nel formato AAAA-MM-GG.");
-            return;
-        }
-
-        const paid = confirm(
-            "La vendita è già stata pagata interamente?\n\nOK = Sì\nAnnulla = No"
-        );
-
-        let received = price;
-
-        if (!paid) {
-
-            const receivedText = prompt("Quanto hai già ricevuto?", sale.received);
-
-            if (receivedText === null) return;
-
-            received = number(receivedText);
-
-            if (
-                !Number.isFinite(parseFloat(receivedText)) ||
-                received < 0 ||
-                received > price
-            ) {
-                alert("Inserisci un importo ricevuto valido.");
-                return;
-            }
-        }
-
-        sale.buyerName = buyerName.trim();
-        sale.quantity = quantity;
-        sale.price = price;
-        sale.date = newDate;
-        sale.received = received;
-        sale.owed = paid ? 0 : price - received;
-        sale.paid = paid;
-
-        delete data.creditorPayments[sale.id];
 
         saveData();
         update();
@@ -2200,21 +2172,138 @@ button {
     });
 
 
+    $("salesList").addEventListener("change", event => {
+
+        if (!event.target.matches('[data-sale-field="paid"]')) return;
+
+        const fields = event.target.closest(".edit-fields");
+        const received = fields.querySelector('[data-sale-field="received"]');
+        const price = fields.querySelector('[data-sale-field="price"]');
+
+        if (event.target.checked) {
+            received.value = price.value;
+            received.readOnly = true;
+        } else {
+            received.readOnly = false;
+        }
+    });
+
+
     $("salesList").addEventListener("click", event => {
 
         const editButton = event.target.closest("[data-edit-sale-id]");
+        const saveButton = event.target.closest("[data-save-sale]");
+        const cancelButton = event.target.closest("[data-cancel-sale]");
 
         if (editButton) {
 
             event.stopPropagation();
 
-            editSale(
-                editButton.dataset.editSaleLoad,
-                editButton.dataset.editSaleId
-            );
+            editingSaleId = editButton.dataset.editSaleId;
+
+            renderHistory();
 
             return;
         }
+
+
+        if (cancelButton) {
+
+            event.stopPropagation();
+
+            editingSaleId = null;
+
+            renderHistory();
+
+            return;
+        }
+
+
+        if (saveButton) {
+
+            event.stopPropagation();
+
+            const loadId = saveButton.dataset.loadId;
+            const saleId = saveButton.dataset.saveSale;
+
+            const load = data.loads.find(item => item.id === loadId);
+
+            if (!load) return;
+
+            const sale = load.sales.find(item => item.id === saleId);
+
+            if (!sale) return;
+
+            const fields = saveButton.closest(".edit-fields");
+
+            const buyerName = fields.querySelector('[data-sale-field="buyer"]').value.trim();
+            const quantityText = fields.querySelector('[data-sale-field="quantity"]').value;
+            const priceText = fields.querySelector('[data-sale-field="price"]').value;
+            const dateText = fields.querySelector('[data-sale-field="date"]').value;
+            const receivedText = fields.querySelector('[data-sale-field="received"]').value;
+            const paid = fields.querySelector('[data-sale-field="paid"]').checked;
+
+            const quantity = number(quantityText);
+            const price = number(priceText);
+            const received = paid ? price : number(receivedText);
+            const date = dateFromInput(dateText);
+
+            const available = getLoadStats(load).remaining + number(sale.quantity);
+
+            if (!buyerName) {
+                alert("Inserisci un nome valido.");
+                return;
+            }
+
+            if (
+                quantity <= 0 ||
+                !Number.isFinite(parseFloat(quantityText)) ||
+                quantity > available
+            ) {
+                alert("Quantità non valida o superiore alla disponibilità.");
+                return;
+            }
+
+            if (price < 0 || !Number.isFinite(parseFloat(priceText))) {
+                alert("Inserisci un prezzo valido.");
+                return;
+            }
+
+            if (!date) {
+                alert("Inserisci una data valida.");
+                return;
+            }
+
+            if (
+                !paid &&
+                (
+                    !Number.isFinite(parseFloat(receivedText)) ||
+                    received < 0 ||
+                    received > price
+                )
+            ) {
+                alert("Inserisci un importo ricevuto valido.");
+                return;
+            }
+
+            sale.buyerName = buyerName;
+            sale.quantity = quantity;
+            sale.price = price;
+            sale.date = date;
+            sale.received = received;
+            sale.owed = paid ? 0 : price - received;
+            sale.paid = paid;
+
+            delete data.creditorPayments[sale.id];
+
+            editingSaleId = null;
+
+            saveData();
+            update();
+
+            return;
+        }
+
 
         const deleteButton = event.target.closest(".delete-sale");
 
@@ -2241,6 +2330,10 @@ button {
 
             load.sales.splice(saleIndex, 1);
 
+            if (editingSaleId === saleId) {
+                editingSaleId = null;
+            }
+
             saveData();
             update();
 
@@ -2250,6 +2343,8 @@ button {
         const entry = event.target.closest(".history-entry");
 
         if (!entry) return;
+
+        if (event.target.closest("button, input, label")) return;
 
         const detail = entry.querySelector(".detail-popup");
 
@@ -2273,6 +2368,7 @@ button {
         };
 
         editingLoadId = null;
+        editingSaleId = null;
 
         saveData();
 
